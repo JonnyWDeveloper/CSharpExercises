@@ -1,9 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ovn2
 {
@@ -17,7 +11,7 @@ namespace Ovn2
         private bool courseHeading = true;  //Show only once.
         private string backtoMainMenu = "h";//Back to the main menu.
         private bool isNumber;              //Check to see if user input is a number.
-        private int age = 0;                //Sets cinema visotors age
+        private int age = 0;                //Sets cinema visitors age
 
         /// <summary>
         /// The price range for cinema tickets.
