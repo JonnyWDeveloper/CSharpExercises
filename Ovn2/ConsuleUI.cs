@@ -32,7 +32,7 @@ namespace Ovn2
             Console.ForegroundColor = color;
         }
         /// <summary>
-        /// Returns 
+        /// Returns all user activity.
         /// </summary>
         /// <returns></returns>
         public string GetUserInput()
