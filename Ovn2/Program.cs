@@ -5,11 +5,11 @@ namespace Ovn2
     {
         static void Main(string[] args)
         {
-            ConsuleUI consuleUI = new ConsuleUI();
+            ConsoleUI consoleUI = new ConsoleUI();
 
             do
             {
-                consuleUI.ShowMainMenu();
+                consoleUI.ShowMainMenu();
             } 
             while (true);
         }

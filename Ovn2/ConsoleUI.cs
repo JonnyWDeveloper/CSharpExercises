@@ -4,7 +4,7 @@ namespace Ovn2
     /// <summary>
     /// The Console Application User Interface
     /// </summary>
-    internal class ConsuleUI
+    internal class ConsoleUI
     {
         private string currency = " SEK";   //Swedish crowns.
         private string? input;              //User input fron the Console
@@ -35,9 +35,9 @@ namespace Ovn2
         /// Returns all user activity.
         /// </summary>
         /// <returns></returns>
-        public string GetUserInput()
+        public string? GetUserInput()
         {
-            input = Console.ReadLine()!;
+            input = Console.ReadLine();
             return input;
         }
         /// <summary>
