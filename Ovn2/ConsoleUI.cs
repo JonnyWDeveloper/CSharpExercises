@@ -1,10 +1,16 @@
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 namespace Ovn2
 {
     /// <summary>
     /// The Console Application User Interface
     /// </summary>
-    internal class ConsoleUI
+    public class ConsoleUI
     {
         private string currency = " SEK";   //Swedish crowns.
         private string? input;              //User input fron the Console
@@ -47,6 +53,12 @@ namespace Ovn2
         public void Print(string message)
         {
             Console.WriteLine(message);
+        }
+        public bool IsNumeric(string value)
+        {
+            //int age;
+            return int.TryParse(GetUserInput(), out age);
+
         }
         /// <summary>
         /// Shows an error message.

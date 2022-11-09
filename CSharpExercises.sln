@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ovn1", "Ovn1\Ovn1.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ovn2", "Ovn2\Ovn2.csproj", "{A0F45559-2B4E-4343-9B76-1C19301D64BE}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ovn3", "Ovn3\Ovn3.csproj", "{5B5EF9B7-A764-4BF2-909D-CC6CA92AE630}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A0F45559-2B4E-4343-9B76-1C19301D64BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0F45559-2B4E-4343-9B76-1C19301D64BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0F45559-2B4E-4343-9B76-1C19301D64BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B5EF9B7-A764-4BF2-909D-CC6CA92AE630}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B5EF9B7-A764-4BF2-909D-CC6CA92AE630}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B5EF9B7-A764-4BF2-909D-CC6CA92AE630}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B5EF9B7-A764-4BF2-909D-CC6CA92AE630}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
