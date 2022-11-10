@@ -66,7 +66,6 @@ namespace Ovn2
         /// <param name="longMessage">Whether the message should be longer.</param>
         public void ShowErrorMessage(bool longMessage)
         {
-
             SetFontColor(ConsoleColor.Red);
 
             if (longMessage)
@@ -143,7 +142,6 @@ namespace Ovn2
 
                 if (isNumber)
                 {
-
                     if (age > 4 && age < 20)
                     {
                         Print("Ungdomspris: 80 kr");

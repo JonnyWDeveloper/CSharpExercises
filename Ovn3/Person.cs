@@ -1,26 +1,88 @@
-﻿ using Ovn2;
+﻿//using Ovn2;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 
 namespace Ovn3
 {
     internal class Person
     {
-        public Person(string fname, string lname)
-        {
-            FirstName = fname;
-            LastName = lname;
-        }
+
         private int age;
         private string fName;
         private string lName;
-        private int height;
-        private int weight;
-
+        private double height;
+        private double weight;
+        public Person(string firstname, string lastname)
+        {
+            FName = firstname;
+            LName = lastname;
+        }
+        public Person(string firstname, string lastname, int age)
+        {
+            FName = firstname;
+            LName = lastname;
+            Age = age;
+        }
+        public Person(string firstname, string lastname, int age, double height)
+        {
+            FName = firstname;
+            LName = lastname;
+            Age = age;
+            Height = height;
+        }
+        public Person(string firstname, string lastname, int age, double height, double weight)
+        {
+            FName = firstname;
+            LName = lastname;
+            Age = age;
+            Height = height;
+            Weight = weight;
+        }
+        public string FName
+        {
+            get
+            {
+                return fName;
+            }
+            set
+            {
+                if ((value.Length > 1) && (value.Length < 10))
+                {
+                    fName = value;
+                }
+                else
+                {
+                    string message = $"\nInvalid entry - firstname: {value}. " +
+                                     $"\nCorrect entry - Your firstname must consist of 2 to 10 letters!\n";
+                    throw new ArgumentException($"{message}", "firstname");
+                }
+            }
+        }
+        public string LName
+        {
+            get
+            {
+                return lName;
+            }
+            set
+            {
+                if ((value.Length > 3) && (value.Length < 16))
+                {
+                    lName = value;
+                }
+                else
+                {
+                    string message = $"\nInvalid entry - lastname: {value}. " +
+                                    $"\nCorrect entry - Your lastname must consist of 3 to 15 letters!\n";
+                    throw new ArgumentException($"{message}", "lastname");
+                }
+            }
+        }
         public int Age
         {
             get
@@ -29,33 +91,20 @@ namespace Ovn3
             }
             set
             {
-                age = value;
+                if (value > 0)
+                {
+                    age = value;
+                }
+                else
+                {
+                    string message = $"\nInvalid entry - age: {value}. " +
+                                    $"\nCorrect entry - Your age must be greater than 0!\n";
+                    throw new ArgumentException($"{message}", "age");
+                }
             }
         }
 
-        public string FirstName
-        {
-            get
-            {
-                return fName;
-            }
-            set
-            {
-                fName = value;
-            }
-        }
-        public string LastName
-        {
-            get
-            {
-                return lName;
-            }
-            set
-            {
-                lName = value;
-            }
-        }
-        public int Height
+        public double Height
         {
             get
             {
@@ -66,7 +115,7 @@ namespace Ovn3
                 height = value;
             }
         }
-        public int Weight
+        public double Weight
         {
             get
             {
@@ -78,6 +127,6 @@ namespace Ovn3
             }
         }
 
-
     }
 }
+
