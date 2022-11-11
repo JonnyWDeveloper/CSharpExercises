@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -9,9 +10,13 @@ using System.Xml.Linq;
 
 namespace Ovn3
 {
-    internal class Person
+    internal interface IPerson
     {
+        void Talk();
+    }
 
+    internal class Person : IPerson
+    {
         private int age;
         private string fName;
         private string lName;
@@ -126,7 +131,12 @@ namespace Ovn3
                 weight = value;
             }
         }
-
+        public void Talk()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
+
+
 
