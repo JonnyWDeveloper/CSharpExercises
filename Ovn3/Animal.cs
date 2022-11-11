@@ -18,7 +18,6 @@ namespace Ovn3
             Age = age;
             Weight = weight;
         }
-
         public string Name
         {
             get
@@ -58,7 +57,7 @@ namespace Ovn3
 
         public virtual string Stats()
         {
-            string properties = $"{Name} {Age} {Weight}";
+            string properties = $"{Name} {Age} {Weight} ";
             return properties;
         }
     }
@@ -82,7 +81,7 @@ namespace Ovn3
         }
         public override string Stats()
         {
-            string properties = $"{Name} {Age} {Weight} {CanSleepStandingUp}";
+            string properties = base.Stats() + $"{CanSleepStandingUp}";
             return properties;
         }
     }
@@ -111,9 +110,14 @@ namespace Ovn3
             Console.WriteLine("Dog sound: Woof and bark!");
 
         }
+        public string WalkTheDog()
+        {
+            return "The dog takes a lovely walk in the park.";
+        }
+       
         public override string Stats()
         {
-            string properties = $"{Name} {Age} {Weight} {CanDetectMedicalIssues}";
+            string properties = base.Stats() + $"{CanDetectMedicalIssues}";
             return properties;
         }
     }
@@ -141,7 +145,7 @@ namespace Ovn3
         }
         public override string Stats()
         {
-            string properties = $"{Name} {Age} {Weight} {NoOfSpikes}";
+            string properties = base.Stats() + $"{NoOfSpikes}";
             return properties;
         }
     }
@@ -170,7 +174,7 @@ namespace Ovn3
         }
         public override string Stats()
         {
-            string properties = $"{Name} {Age} {Weight} {IsPoisonous}";
+            string properties = base.Stats() + $"{IsPoisonous}";
             return properties;
         }
     }
@@ -200,7 +204,7 @@ namespace Ovn3
         }
         public override string Stats()
         {
-            string properties = $"{Name} {Age} {Weight} {IsWild}";
+            string properties = base.Stats() + $"{isWild}";
             return properties;
         }
     }
@@ -231,7 +235,7 @@ namespace Ovn3
         }
         public override string Stats()
         {
-            string properties = $"{Name} {Age} {Weight} {WingSpan}";
+            string properties = base.Stats() + $"{WingSpan}";
             return properties;
         }
     }
@@ -259,7 +263,7 @@ namespace Ovn3
         }
         public override string Stats()
         {
-            string properties = $"{Name} {Age} {Weight} {WingSpan} {Endangered}";
+            string properties = base.Stats() + $"{WingSpan} {Endangered}";
             return properties;
         }
     }
@@ -289,7 +293,7 @@ namespace Ovn3
         }
         public override string Stats()
         {
-            string properties = $"{Name} {Age} {Weight} {WingSpan} {Gregarious}";
+            string properties = base.Stats() + $"{WingSpan} {Gregarious}";
             return properties;
         }
     }
@@ -319,7 +323,7 @@ namespace Ovn3
         }
         public override string Stats()
         {
-            string properties = $"{Name} {Age} {Weight} {WingSpan} {Loyal}";
+            string properties = base.Stats() + $"{WingSpan} {Loyal}";
             return properties;
         }
     }
@@ -343,7 +347,7 @@ namespace Ovn3
         }
         public override string Stats()
         {
-            string properties = $"{Name} {Age} {Weight} {IsWild} {CanTalk}";
+            string properties = base.Stats() + $" {isWild} {CanTalk}";
             return properties;
         }
         public void Talk()
