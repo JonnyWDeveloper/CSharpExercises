@@ -30,14 +30,14 @@ namespace Ovn3
             try
             {
                 //C# Övningssamling - Inkapsling, arv och polymorfism
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine("\n\nC# Övningssamling - Inkapsling, arv och polymorfism");
+               Tools.SetFontColor(ConsoleColor.Cyan);
+                Tools.Print("\n\nC# Övningssamling - Inkapsling, arv och polymorfism");
 
                 //3.1) Inkapsling
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine("\n\n--------------------------------------------------------------");
-                Console.WriteLine("3.1) Inkapsling");
-                Console.WriteLine("--------------------------------------------------------------\n");
+                Tools.SetFontColor( ConsoleColor.Cyan);
+                Tools.Print("\n\n--------------------------------------------------------------");
+                Tools.Print("3.1) Inkapsling");
+                Tools.Print("--------------------------------------------------------------\n");
                 //Create 6 Persons
                 Person person3 = new Person("Lisa", "Orre", 50);
                 Person person2 = new Person("Olle", "Hjortsen", 6);
@@ -58,40 +58,47 @@ namespace Ovn3
                 //Loop through the list of persons and write to the console
                 foreach (var person in personList)
                 {
-                    Console.ForegroundColor = ConsoleColor.Gray;
+                    Tools.SetFontColor( ConsoleColor.Gray);
 
                     if (person.Weight == 0)  //If person was created in Person.cs
                     {
-                        Console.WriteLine(" Person created in Person.cs:\n");
+                        Tools.Print(" Person created in Person.cs:\n");
                     }
                     else                //Or the person was created via PersonHelper.cs
                     {
-                        Console.WriteLine(" Person created in PersonHelper.cs:\n");
+                        Tools.Print(" Person created in PersonHelper.cs:\n");
+                        Tools.SetFontColor( ConsoleColor.Blue);
+                        Tools.Print(personHandler.ToString());
                     }
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine($" Firstname: {person.FName}\n Lastname: {person.LName}\n " +
+                    Tools.SetFontColor( ConsoleColor.Yellow);
+                    Tools.Print($" Firstname: {person.FName}\n Lastname: {person.LName}\n " +
                     $"Age: {person.Age}\n Height: {person.Height}\n Weight: {person.Weight}\n ");
 
-                    Console.ForegroundColor = ConsoleColor.Gray;
+                    Tools.SetFontColor( ConsoleColor.Gray);
                     personHandler.SetAge(person, 100);
-                    Console.WriteLine($" SetAge () was used: {person.FName} {person.LName} new age: {person.Age}\n");
+                    Tools.Print($" SetAge () was used: {person.FName} {person.LName} new age: {person.Age}\n");
                 }
 
-                Console.ForegroundColor = ConsoleColor.Gray;
-                Console.WriteLine("Resultat:\n");
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine($"F: {person1.FName} L: {person1.LName}, " +
+                Tools.SetFontColor( ConsoleColor.Gray);
+                Tools.Print("Resultat:\n");
+                Tools.SetFontColor( ConsoleColor.Yellow);
+                Tools.Print($"F: {person1.FName} L: {person1.LName}, " +
                     $"Age: {person1.Age} W: {person1.Weight} H:{person1.Height}");
-                Console.WriteLine($"F: {person2.FName} L: {person2.LName}, " +
+                Tools.Print($"F: {person2.FName} L: {person2.LName}, " +
                     $"Age: {person2.Age} W: {person2.Weight} H:{person2.Height}");
-                Console.WriteLine($"F: {person3.FName} L: {person3.LName}, " +
+                Tools.Print($"F: {person3.FName} L: {person3.LName}, " +
                     $"Age: {person3.Age} W: {person3.Weight} H:{person3.Height}");
-                Console.WriteLine($"F: {person1a.FName} L: {person1a.LName}, " +
+                Tools.Print($"F: {person1a.FName} L: {person1a.LName}, " +
                    $"Age: {person1a.Age} W: {person1a.Weight} H:{person1a.Height}");
-                Console.WriteLine($"F: {person2a.FName} L: {person2a.LName}, " +
+                Tools.Print($"F: {person2a.FName} L: {person2a.LName}, " +
                     $"Age: {person2a.Age} W: {person2a.Weight} H:{person2a.Height}");
-                Console.WriteLine($"F: {person3a.FName} L: {person3a.LName}, " +
+                Tools.Print($"F: {person3a.FName} L: {person3a.LName}, " +
                     $"Age: {person3a.Age} W: {person3a.Weight} H:{person3a.Height}");
+
+
+                Tools.SetFontColor( ConsoleColor.DarkMagenta);
+                Tools.Print("\nPerson1.toString():");
+                Tools.Print(person1.ToString());
 
             }
             catch (ArgumentException ae)//Exception message handling due to wrong inputs in parameters
@@ -103,50 +110,61 @@ namespace Ovn3
                 {
                     if (messages[index].Equals(message))
                     {
-                        Console.ForegroundColor = ConsoleColor.Red;
+                        Tools.SetFontColor( ConsoleColor.Red);
                     }
                     else
                     {
-                        Console.ForegroundColor = ConsoleColor.Green;
+                        Tools.SetFontColor( ConsoleColor.Green);
                     }
-                    Console.WriteLine(message);
+                    Tools.Print(message);
                 }
             }
             catch (Exception ex)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine(ex.Message);
+                Tools.SetFontColor( ConsoleColor.Red);
+                Tools.Print(ex.Message);
             }
 
             //3.2) Polymorfism
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("\n\n--------------------------------------------------------------");
-            Console.WriteLine("3.2) Polymorfism");
-            Console.WriteLine("--------------------------------------------------------------\n");
+            Tools.SetFontColor( ConsoleColor.Cyan);
+            Tools.Print("\n\n--------------------------------------------------------------");
+            Tools.Print("3.2) Polymorfism");
+            Tools.Print("--------------------------------------------------------------\n");
 
             //Error handling by clases inheriting from the abstract class UserErrors 
             NumericInputError numericInputError = new NumericInputError();
             TextInputError textInputError = new TextInputError();
+            Tools.SetFontColor( ConsoleColor.DarkMagenta);
 
             var userErrors = new List<UserError>();
             userErrors.Add(numericInputError);
             userErrors.Add(textInputError);
 
-            Console.ForegroundColor = ConsoleColor.Gray;
-            Console.WriteLine("UserError messages:\n");
-            Console.ForegroundColor = ConsoleColor.Red;
+            Tools.SetFontColor( ConsoleColor.Gray);
+            Tools.Print("UserError messages:\n");
 
             //Loop through the UserErrors and print to the Console
             foreach (var userError in userErrors)
             {
-                Console.WriteLine(userError.UEMessage() + "\n");
+                Tools.SetFontColor( ConsoleColor.DarkMagenta);
+                if (userError.Equals(numericInputError))
+                {
+                    Tools.Print(numericInputError.ToString());
+                }
+                else
+                {
+                    Tools.Print(textInputError.ToString());
+
+                }
+                Tools.SetFontColor( ConsoleColor.Red);
+                Tools.Print(userError.UserErrorMessage() + "\n");
             }
 
             //3.3) Arv
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("\n\n---------------------------------------------------------------");
-            Console.WriteLine("3.3) Arv & 3.4) Mer polymorfism");
-            Console.WriteLine("---------------------------------------------------------------\n");
+            Tools.SetFontColor(ConsoleColor.Cyan);
+            Tools.Print("\n\n---------------------------------------------------------------");
+            Tools.Print("3.3) Arv & 3.4) Mer polymorfism");
+            Tools.Print("---------------------------------------------------------------\n");
 
             //3.4) 4.Skapa några djur (av olika typ) i din lista.
             Horse horse = new Horse("Horse", 12, 500, true);
@@ -167,66 +185,66 @@ namespace Ovn3
             Animals.Add(wolf);
             Animals.Add(wolfman);
 
-            Console.ForegroundColor = ConsoleColor.White;
+            Tools.SetFontColor( ConsoleColor.White);
 
             //3.4) 5. Skriv ut vilka djur som finns i listan med hjälp av en foreach-loop.
-            Console.WriteLine("3.4) 5. Skriv ut vilka djur som finns i listan med hjälp av en foreach-loop.");
-            Console.WriteLine("3.4) 6.Anropa även Animals Sound() metod i foreach-loopen.");
-            Console.WriteLine("3.4) 7.Gör en check i for-loopen ifall ett djur även är av typen IPerson...\n");
-            Console.ForegroundColor = ConsoleColor.Gray;
-            Console.WriteLine("Resultat:\n");
+            Tools.Print("3.4) 5. Skriv ut vilka djur som finns i listan med hjälp av en foreach-loop.");
+            Tools.Print("3.4) 6.Anropa även Animals Sound() metod i foreach-loopen.");
+            Tools.Print("3.4) 7.Gör en check i for-loopen ifall ett djur även är av typen IPerson...\n");
+            Tools.SetFontColor( ConsoleColor.Gray);
+            Tools.Print("Resultat:\n");
 
             foreach (var animal in Animals)
             {
                 var castedAnimal = animal as IPerson;
 
-                Console.ForegroundColor = ConsoleColor.Gray;
+                Tools.SetFontColor( ConsoleColor.Gray);
 
                 //3.4) 6. Anropa även Animals Sound() metod i foreach-loopen.
                 //3.4) 7.Gör en check i for-loopen ifall ett djur även är av typen IPerson...
                 if (castedAnimal != null)
                 {
                     wolfman = (Wolfman)castedAnimal;
-                    Console.ForegroundColor = ConsoleColor.Green;
+                    Tools.SetFontColor( ConsoleColor.Green);
                     Console.Write($"{animal.GetType().Name}");
-                    Console.WriteLine(" is an IPerson");
-                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Tools.Print(" is an IPerson");
+                    Tools.SetFontColor( ConsoleColor.Yellow);
                     castedAnimal.Talk();
                 }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine($"{animal.Name}");
+                    Tools.SetFontColor( ConsoleColor.Green);
+                    Tools.Print($"{animal.Name}");
                 }
 
                 //3.4) 6. Anropa även Animals Sound() metod i foreach-loopen.
-                Console.ForegroundColor = ConsoleColor.Gray;
-                Console.ForegroundColor = ConsoleColor.Yellow;
+                Tools.SetFontColor( ConsoleColor.Gray);
+                Tools.SetFontColor( ConsoleColor.Yellow);
                 animal.DoSound();
-                Console.ForegroundColor = ConsoleColor.Gray;
-                Console.WriteLine(string.Empty);
+                Tools.SetFontColor( ConsoleColor.Gray);
+                Tools.Print(string.Empty);
             }
 
-            Console.WriteLine(string.Empty);
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("3.3) 12.Implementera Talk() som skriver ut vad Wolfman säger.\n");
+            Tools.Print(string.Empty);
+            Tools.SetFontColor( ConsoleColor.White);
+            Tools.Print("3.3) 12.Implementera Talk() som skriver ut vad Wolfman säger.\n");
 
             //Single call to Wolfman Talk()
-            Console.ForegroundColor = ConsoleColor.Green;
+            Tools.SetFontColor( ConsoleColor.Green);
             Wolfman wolfman2 = new Wolfman("Wolfman", 22, 55.7, false, true);
             wolfman2.Talk();
 
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine($"3.3) 13.F: Om vi under utvecklingen kommer fram till att samtliga fåglar" +
+            Tools.SetFontColor( ConsoleColor.White);
+            Tools.Print($"3.3) 13.F: Om vi under utvecklingen kommer fram till att samtliga fåglar" +
                 $" behöver ett nytt attribut, i vilken klass bör vi lägga det?");
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("\nSvar: I klassen Bird.");
-            Console.WriteLine(string.Empty);
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine($"3.3) 14. F: Om alla djur behöver det nya attributet, " +
+            Tools.SetFontColor( ConsoleColor.Green);
+            Tools.Print("\nSvar: I klassen Bird.");
+            Tools.Print(string.Empty);
+            Tools.SetFontColor( ConsoleColor.White);
+            Tools.Print($"3.3) 14. F: Om alla djur behöver det nya attributet, " +
                 $"vart skulle man lägga det då?");
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("\nSvar: I klassen Animal.\n");
+            Tools.SetFontColor( ConsoleColor.Green);
+            Tools.Print("\nSvar: I klassen Animal.\n");
 
             //3.4) 8. Skapa en lista för hundar.
             Dog dog1 = new Dog("German Shepard", 7, 12, true);
@@ -238,86 +256,88 @@ namespace Ovn3
             dogs.Add(dog3);
             //dogs.Add(horse); Genererar typfel.
 
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("3.4) 9.F: Försök att lägga till en häst i listan av hundar.Varför fungerar inte det ?");
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("\nSvar: Horse är inte en Dog utan en Animal (Is an Animal - Single Inheritance)\n");
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("3.4) 10. F: Vilken typ måste listan vara för att alla klasser skall kunna lagras tillsammans?");
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("\nSvar: Listan måste vara av alla djurs minsta gemensamma nämnare, Animal (Is an Animal - Base Class)\n");
+            Tools.SetFontColor( ConsoleColor.White);
+            Tools.Print("3.4) 9.F: Försök att lägga till en häst i listan av hundar.Varför fungerar inte det ?");
+            Tools.SetFontColor( ConsoleColor.Green);
+            Tools.Print("\nSvar: Horse är inte en Dog utan en Animal (Is an Animal - Single Inheritance)\n");
+            Tools.SetFontColor( ConsoleColor.White);
+            Tools.Print("3.4) 10. F: Vilken typ måste listan vara för att alla klasser skall kunna lagras tillsammans?");
+            Tools.SetFontColor( ConsoleColor.Green);
+            Tools.Print("\nSvar: Listan måste vara av alla djurs minsta gemensamma nämnare, Animal (Is an Animal - Base Class)\n");
 
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("3.4) 11. Skriv ut samtliga Animals Stats() genom en foreach loop.\n");
-            Console.WriteLine("Resultat:\n");
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            Tools.SetFontColor( ConsoleColor.White);
+            Tools.Print("3.4) 11. Skriv ut samtliga Animals Stats() genom en foreach loop.\n");
+            Tools.Print("Resultat:\n");
+            Tools.SetFontColor( ConsoleColor.Yellow);
             foreach (var animal in Animals)
             {
-                Console.WriteLine(animal.Stats());// = Animal properties               
+                Tools.Print(animal.Stats());// = Animal properties               
             }
-            Console.WriteLine(string.Empty);
+            Tools.Print(string.Empty);
 
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("3.4) 13. F: Förklara vad det är som händer.\n");
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Svar: Alla djurs egenskaper skrivs ut via basklassen, " +
+            Tools.SetFontColor( ConsoleColor.White);
+            Tools.Print("3.4) 13. F: Förklara vad det är som händer.\n");
+            Tools.SetFontColor( ConsoleColor.Green);
+            Tools.Print("Svar: Alla djurs egenskaper skrivs ut via basklassen, " +
                 "varje djur lägger till en egen, unik, egenskap.\n");
 
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("3.4) 14. Skriv ut Stats() metoden enbart för alla hundar genom en foreach på Animals.");
+            Tools.SetFontColor( ConsoleColor.White);
+            Tools.Print("3.4) 14. Skriv ut Stats() metoden enbart för alla hundar genom en foreach på Animals.");
 
             //Throw in some more dogs in Animals
             Animals.Add(dog1);
             Animals.Add(dog2);
             Animals.Add(dog3);
 
-            Console.WriteLine("3.4) 18. Hitta ett sätt att skriva ut din nya metod för dog genom en foreach på Animals.\n");
+            Tools.Print("3.4) 18. Hitta ett sätt att skriva ut din nya metod för dog genom en foreach på Animals.\n");
 
-            Console.ForegroundColor = ConsoleColor.Green;
+            Tools.SetFontColor( ConsoleColor.Green);
             foreach (var animal in Animals)
             {
                 var castedAnimal = animal as Dog;
                 //int items = Animals.Count;
-                //Console.WriteLine($"{items}");
+                //Tools.Print($"{items}");
 
                 if (castedAnimal != null)
                 {
-                    Console.ForegroundColor = ConsoleColor.Gray;
-                    Console.WriteLine($"castedAnimal.Stats()");
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine($"{castedAnimal.Stats()}\n");
-                    Console.ForegroundColor = ConsoleColor.Gray;
-                    Console.WriteLine("animal.WalkTheDog()");
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine($"{castedAnimal.WalkTheDog()}\n");
+                    Tools.SetFontColor( ConsoleColor.Gray);
+                    Tools.Print($"castedAnimal.Stats()");
+                    Tools.SetFontColor( ConsoleColor.Green);
+                    Tools.Print($"{castedAnimal.Stats()}\n");
+                    Tools.SetFontColor( ConsoleColor.Gray);
+                    Tools.Print("animal.WalkTheDog()");
+                    Tools.SetFontColor( ConsoleColor.Yellow);
+                    Tools.Print($"{castedAnimal.WalkTheDog()}\n");
                 }
                 else
                 {   //3.4) 16. Kommer du åt den metoden från Animals listan? 
                     //Svar: Nej!
                     //animal.WalkTheDog(); //Is only accessibly for animals that are dogs.
+                    Tools.Print(animal + "\n");
                 }
             }
+
             //Questions
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("\n3.4) 15. Skapa en ny metod med valfritt namn i klassen Dog som endast returnerar en valfri sträng.\n");
-            Console.ForegroundColor = ConsoleColor.Gray;
-            Console.WriteLine($"dog.WalkTheDog()");
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"{dog.WalkTheDog()}");
+            Tools.SetFontColor( ConsoleColor.White);
+            Tools.Print("\n3.4) 15. Skapa en ny metod med valfritt namn i klassen Dog som endast returnerar en valfri sträng.\n");
+            Tools.SetFontColor( ConsoleColor.Gray);
+            Tools.Print($"dog.WalkTheDog()");
+            Tools.SetFontColor( ConsoleColor.Green);
+            Tools.Print($"{dog.WalkTheDog()}");
 
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("\n3.4) 16. Kommer du åt den metoden från Animals listan? \n");
-            Console.ForegroundColor = ConsoleColor.Gray;
-            Console.WriteLine("animal.WalkTheDog()");
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"Svar: Nej.");
+            Tools.SetFontColor( ConsoleColor.White);
+            Tools.Print("\n3.4) 16. Kommer du åt den metoden från Animals listan? \n");
+            Tools.SetFontColor( ConsoleColor.Gray);
+            Tools.Print("animal.WalkTheDog()");
+            Tools.SetFontColor( ConsoleColor.Green);
+            Tools.Print($"Svar: Nej.");
 
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("\n3.4) 17. F: Varför inte? \n");
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"Svar: Metoden är endast implementerad i Dog klassen. " +
+            Tools.SetFontColor( ConsoleColor.White);
+            Tools.Print("\n3.4) 17. F: Varför inte? \n");
+            Tools.SetFontColor( ConsoleColor.Green);
+            Tools.Print($"Svar: Metoden är endast implementerad i Dog klassen. " +
                 $"För att övriga djur ska nå den måste den finnas i Animal klassen.");
-
+            
             Console.ReadKey();//Any key to exit program.
         }
     }

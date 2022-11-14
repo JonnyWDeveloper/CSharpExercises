@@ -1,4 +1,4 @@
-﻿//using Ovn2;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,6 +47,10 @@ namespace Ovn3
             Age = age;
             Height = height;
             Weight = weight;
+        }
+        public override string ToString()
+        {
+            return FName + " " + LName;
         }
         public string FName
         {

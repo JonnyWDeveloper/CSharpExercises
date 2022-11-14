@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualBasic;
+﻿using Microsoft.CSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ namespace Ovn3
     {
         private string name;
         private int age;
-        private double weight;
+        private double? weight;
         internal Animal(string name, int age, double weight)
         {
             Name = name;
@@ -42,7 +42,7 @@ namespace Ovn3
             }
         }
 
-        public double Weight
+        public double? Weight
         {
             get
             {
@@ -52,6 +52,11 @@ namespace Ovn3
             {
                 weight = value;
             }
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
         public abstract void DoSound();
 

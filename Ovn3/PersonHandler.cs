@@ -9,12 +9,24 @@ namespace Ovn3
 {
     internal class PersonHandler
     {
+        private const string name = "PersonHandler";
         private int age;
         private string? fName;
         private string? lName;
         private double height;
         private double weight;
         private Person? person;
+
+        public string Name
+        {
+            get => name;
+            
+        }
+
+        public override string ToString()
+        {
+            return Name;          
+        }
         public Person CreatePerson(
             int age,
             string fname,
