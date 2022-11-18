@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Xml.Linq;
+using static System.Collections.Specialized.BitVector32;
 
 namespace Ovn4
 {
@@ -10,6 +13,8 @@ namespace Ovn4
         /// <param name="args"></param>
         static void Main()
         {
+            Console.Title = "C# Övningssamling 4 - Minneshantering";
+
             Console.Clear();
 
             while (true)
@@ -167,7 +172,9 @@ namespace Ovn4
                     && input.Length > 1             //It is not allowed to exit the menu with 0. 
                     && input[0].ToString() != "0"   //and any other character following including more zeros.
                     && input[0].ToString() != "q"
-                    && input[0].ToString() != "t")//t calls TrimExcess on the list.
+                    && input[0].ToString() != "t"//t calls TrimExcess on the list.
+                    && input[0].ToString() == "+"
+                    || input[0].ToString() == "-")
                 {
                     listItem = input.Substring(1);  //Get the rest of the characters to add to the list
                                                     //starting from the 2nd character in the string.
@@ -177,8 +184,7 @@ namespace Ovn4
                     && input.Length == 1
                     && input[0].ToString() == "0"                       //To exit the menu, ONLY 0 is allowed.
                     || input.Length == 1 && input[0].ToString() == "q"  //ICA
-                    || input.Length == 1 && input[0].ToString() == "t"  //TrimToSize
-                    || input.Length == 1 && input[0].ToString() == "-")
+                    || input.Length == 1 && input[0].ToString() == "t") //TrimToSize                   
                 {
                     action = input[0];
                 }
@@ -196,11 +202,11 @@ namespace Ovn4
                         break;
                     case '+':
                         theList.Add($"{listItem}");
-                        action = ' '; //Needs to be reset each time otherwise the same input will be added.
+                        //action = ' '; //Needs to be reset each time otherwise the same input will be added.
                         break;
                     case '-':
                         theList.Remove($"{listItem}");
-                        action = ' ';
+                        //action = ' ';
                         break;
                     case 'q':
                         Console.ForegroundColor = ConsoleColor.Cyan;
@@ -264,32 +270,38 @@ namespace Ovn4
                         Console.ForegroundColor = ConsoleColor.Red;
                         if (theList.Count > 0)
                         {
-                            Console.WriteLine("Use one of the following +, -, q, t\n");
+                            Console.WriteLine("Use one of the following +, -, q, t, 0\n");
                         }
                         else
                         {
-                            Console.WriteLine("Use one of the following +, q, t\n");
+                            Console.WriteLine("Use one of the following +, q, t, 0\n");
                         }
                         action = ' ';
                         break;
                 }
+                if (action == '+' || action == '-')
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("\n--->  Call: foreach (var item in theList)\n");
 
-                //Console.ForegroundColor = ConsoleColor.Yellow;
-                //Console.WriteLine("--->  Call: foreach (var item in theList)");
+                    foreach (var element in theList)
+                    {
+                        if (element != string.Empty)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Cyan;
+                            Console.WriteLine("Element: " + element + "\n");
+                        }
+                    }
 
-                //foreach (var element in theList)
-                //{
-                //    if (element != string.Empty)
-                //    {
-                //        Console.ForegroundColor = ConsoleColor.Cyan;
-                //        Console.WriteLine("Element: " + element);
-                //    }
-                //    else
-                //    {
-                //        Console.ForegroundColor = ConsoleColor.Red;
-                //        Console.WriteLine("String Empty");
-                //    }
-                //}
+                    if (theList.Count == 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("The list is empty!");
+                    }
+                    action = ' ';//Reset.
+                }
+
+
             } while (true);
         }
 
@@ -326,9 +338,9 @@ namespace Ovn4
 
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("\nInstructions:");
-                Console.WriteLine("Write any type of element (a name, a number , an object, etc.) and it will stand in line / queue up.");
-                Console.WriteLine("Use + before the element name:" +
-                    " +Element to add to queue and " +
+                Console.WriteLine("Write any type of element (a name, a number , an object, etc.)and it will stand in line / queue up.");
+                Console.WriteLine("Use + before the element name:\n" +
+                    " +Element to add to queue and\n" +
                     "- to remove the first element (FIFO - First In First Out).");
 
                 Console.ForegroundColor = ConsoleColor.Yellow;
@@ -381,8 +393,9 @@ namespace Ovn4
                         queue.Enqueue($"{queueItem}");
                         foreach (var element in queue)
                         {
-                            Console.WriteLine(element);
-                            Console.WriteLine(queue.Count);
+                            Console.WriteLine("element: " + element);
+                            Console.WriteLine("queue.Count: " + queue.Count);
+                            Console.WriteLine();
                         }
                         action = ' '; //Needs to be reset each time otherwise the same input will be added.
                         break;
@@ -390,12 +403,19 @@ namespace Ovn4
                         queue.Dequeue();
                         foreach (var element in queue)
                         {
-                            Console.WriteLine(element);
-                            Console.WriteLine(queue.Count);
+                            Console.WriteLine("element: " + element);
+                            Console.WriteLine("queue.Count: " + queue.Count);
+                            Console.WriteLine();
                         }
                         action = ' ';
                         break;
                     case 'i': //ICA Queue simulation
+                        foreach (var element in queue)
+                        {
+                            Console.WriteLine("element: " + element);
+                            Console.WriteLine("queue.Count: " + queue.Count);
+                            Console.WriteLine();
+                        }
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.WriteLine("\nICA Supermarket opening - Yippiii!");
 
@@ -512,6 +532,7 @@ namespace Ovn4
                 Console.WriteLine("\n+ Add any element to a Stack"
                     + "\n- Remove the last element from the Stack"
                     + "\ni Examine the ICA case"
+                    + "\nq Examine Q & A"
                     + "\nr Examine the ReverseText method"
                     + "\n0 Exit to the Main menu");
 
@@ -674,6 +695,7 @@ namespace Ovn4
                         break;
                     case 'r':
                         Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine("\n\nReverseText(string text);");
                         Console.WriteLine("Enter a text to be reversed!");
                         string inputToReverse = Console.ReadLine();
 
@@ -682,7 +704,7 @@ namespace Ovn4
                             ReverseText(inputToReverse);
                         }
                         Console.ReadLine();
-                        
+
                         break;
                     default:
                         Console.ForegroundColor = ConsoleColor.Red;
@@ -707,8 +729,12 @@ namespace Ovn4
              * Example of correct: (()), {}, [({})],  List<int> list = new List<int>() { 1, 2, 3, 4 };
              * Example of incorrect: (()]), [), {[()}],  List<int> list = new List<int>() { 1, 2, 3, 4 );
              */
-
             Console.Clear();
+            char action = ' ';
+            Stack stack = new Stack();
+            bool matched = false;
+            int noOfLeft = 0; //Tracks if we have even pairs
+            int noOfRight = 0;//Tracks if we have even pairs
 
             do
             {
@@ -717,34 +743,129 @@ namespace Ovn4
                 Console.WriteLine("4. Check Paranthesis");
                 Console.WriteLine("\n.......................................\n");
 
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("Please navigate through the menu by entering a char of your choice: \n" +
+                    "p, 0 ");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("\np Check for matches\n" +
+                    "0 Exit to the Main menu\n");
+
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.Write("Input: ");
                 string? input = Console.ReadLine(); //Get user input
                 Console.WriteLine();
-                Console.Clear();
 
-                if (input != null)
+                if (!string.IsNullOrEmpty(input)
+                 && input.Length == 1
+                 && input[0].ToString() == "0"                       //To exit the menu, ONLY 0 is allowed.
+                || input.Length == 1 && input[0].ToString() == "p")
                 {
+                    action = input[0];
+                }
+                else
+                {
+                    action = ' ';
+                }
 
+                switch (action)
+                {
+                    case '0':
+                        Main();
+                        break;
+                    case 'p':
+
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine("Enter any number of characters and parenthesis to see\n" +
+                            "if we get a wellbalanced text, which means there has to be an opening\n" +
+                            "and closing parenthesis to make a pair. If so, the result will return TRUE.\n" +
+                            "Otherwise FALSE.\n");
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.Write("Input: ");
+                        input = Console.ReadLine();
+
+                        foreach (var character in input)
+                        {
+                            //for (int i = 0; i < input.Length; i++)
+                            //{
+                            //Char character = input[i];
+
+                            if (character == '(')
+                            {
+                                ++noOfLeft;
+                                stack.Push(character);//Add to the stack
+                                Console.WriteLine($"Matched:  {character}  stack.Push");
+                            }
+                            else if (stack.Count != 0 && character == ')' && (char)stack.Peek() == '(')
+                            {
+                                ++noOfRight;
+                                stack.Pop(); //Remove from to the stack and put it back
+                                Console.WriteLine($"Removed and put back   {character} stack.Pop()");
+                                matched = true;
+                            }
+                            else
+                            {
+                                Console.WriteLine("No match found!");//No match found
+                                matched = false;
+                            }
+                        }
+
+                        if (matched && noOfLeft == noOfRight)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("\nTRUE - The text is wellbalanced!");//                
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("\nFALSE - The text is NOT wellbalanced!");//
+                        }
+                        Console.WriteLine($"Number of (:  {noOfLeft}");
+                        Console.WriteLine($"Number of ):  {noOfRight}\n");
+                        action = ' ';
+                        break;
+                    default:
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        if (stack.Count > 0)
+                        {
+                            Console.WriteLine("Use one of the following p, 0\n");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Use one of the following p, 0\n");
+                        }
+                        action = ' ';
+                        break;
                 }
             } while (true);
-        }/// <summary>
-         /// A method that gets a text as a parameter 
-         /// then uses a Stack to revers the order of the characters. 
-         /// The reversed text is written to the console window.
-         /// </summary>
-         /// <param name="text">The text to be reversed</param>
+        }
+
+
+        /// <summary>
+        /// A method that gets a text as a parameter 
+        /// then uses a Stack to revers the order of the characters. 
+        /// The reversed text is written to the console window.
+        /// </summary>
+        /// <param name="text">The text to be reversed</param>
         static void ReverseText(string text)
         {
             string reversedString = "";
             Stack reverseStack = new Stack();
-            foreach (char c in text)
-                reverseStack.Push(c);
-            while (reverseStack.Count > 0)
+
+            while (true)
             {
-                reversedString += reverseStack.Pop();
+                foreach (char c in text)
+                {
+                    reverseStack.Push(c); //Adds characters. Does not change the text               
+                }
+                while (reverseStack.Count > 0)
+                {
+                    reversedString += reverseStack.Pop(); //Removes characters and adds to the string again
+                    Console.Write(reversedString[reversedString.Length - 1] + " "); //according to LIFO so the last character will now be first.
+                    Thread.Sleep(200);
+                }
+                Console.WriteLine();
+                text = Console.ReadLine();
             }
-            Console.WriteLine(reversedString);
         }
 
     }
