@@ -12,7 +12,6 @@ namespace Ovn4
         static void Main()
         {
             Console.Title = "C# Övningssamling 4 - Minneshantering";
-
             Console.Clear();
 
             while (true)
@@ -28,7 +27,8 @@ namespace Ovn4
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("\nPlease navigate through the menu by inputting the number \n(1, 2, 3 , 4, 5, 6, 7, 8, 0) of your choice");
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("\n1. Examine a List"
+                Console.WriteLine(
+                      "\n1. Examine a List"
                     + "\n2. Examine a Queue"
                     + "\n3. Examine a Stack"
                     + "\n4. Check Paranthesis"
@@ -38,7 +38,7 @@ namespace Ovn4
                     + "\n8. Check Fibonacci Sum Nth"
                     + "\nq. Check Q & A"
                     + "\n0. Exit the application");
-                
+
                 char input = ' '; //Creates the character input to be used with the switch-case below.
 
                 try
@@ -67,9 +67,11 @@ namespace Ovn4
                         CheckParanthesis();
                         break;
                     case '5':
-                        RecursiveOdd(1); //  1
-                        RecursiveOdd(3); // 5
-                        int resultOdd = RecursiveOdd(5); // 9
+                        int resultOdd = RecursiveOdd(1); //  1
+                        Console.WriteLine("Result: " + resultOdd);
+                        resultOdd = RecursiveOdd(3); // 5
+                        Console.WriteLine("Result: " + resultOdd);
+                        resultOdd = RecursiveOdd(5); // 9
                         Console.WriteLine("Result: " + resultOdd);
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine("Press any key to exit");
@@ -85,12 +87,13 @@ namespace Ovn4
                         Console.Clear();
                         break;
                     case '7':
-                        Console.ForegroundColor= ConsoleColor.White;
+                        Console.Title = "7. Check Fibonacci Sequence";
+                        Console.ForegroundColor = ConsoleColor.White;
                         Console.WriteLine("Set how many steps we will go in the sequence.");
                         Console.WriteLine("The result shows the sum for each step");
                         Console.ForegroundColor = ConsoleColor.Yellow;
-                        int runs = Convert.ToInt32( Console.ReadLine());
-                        for (int i = 0; i <= runs; i++) 
+                        int runs = Convert.ToInt32(Console.ReadLine());
+                        for (int i = 0; i <= runs; i++)
                         {
                             Console.WriteLine("Result: " + Fibonacci(i));
                         }
@@ -100,6 +103,7 @@ namespace Ovn4
                         Console.Clear();
                         break;
                     case '8':
+                        Console.Title = "8. Check Fibonacci Sum Nth";
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.WriteLine("Set the Nth term for the sequence.");
                         Console.WriteLine("The result shows the sum for the Nth term");
@@ -112,45 +116,7 @@ namespace Ovn4
                         Console.Clear();
                         break;
                     case 'q':
-                        Console.ForegroundColor = ConsoleColor.Cyan;
-                        Console.WriteLine("Teori och fakta");
-                        Console.WriteLine(".......................................\n");
-                        //Q & A: Questions and answers to Exercise 4.
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine("1. Hur fungerar stacken och heapen?\n" +
-                            "Förklara gärna med exempel eller skiss på dess grundläggande funktion");
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("Svar:");
-                        Console.ForegroundColor = ConsoleColor.DarkGreen;
-                        Console.WriteLine("Minnet delas in i två delar: \"The Stack \" och \"The Heap\".\n" +
-                            "Stacken lagrar lokala variabler av Value Types och Reference Types.\n" +
-                            "Stacken är en wrapper runt en array som är endimensionell.\n" +
-                            "Den är bra på att förvara temporär data enligt LIFO (Last In First Out) principen.\n" +
-                            "Stacken sköter sin minneshantering själv och raderar variabel referenserna då koden körts i en metod.\n" +
-                            "Heapen lagrar instanser av klasser (kopior av objekt) och klassvariablar då de är tilldelade i klassen.\n" +
-                            "Referenstypen har endast fått en referens (en sorts pekare) i stacken innan den instansierats.\n" +
-                            "Referenstyper får en minnesplats på Heapen efter de har skapats via new operatorn.\n" +
-                            "Heapen sköter inte sin minneshantering själv utan den sköts av CLR (Common Language Runtime) GC (Garbage Collector).\n");
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine("2.Vad är Value Types repsektive Reference Types och vad skiljer dem åt ?");
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("Svar:");
-                        Console.ForegroundColor = ConsoleColor.DarkGreen;
-                        Console.WriteLine("Value Types kan vara lokala variablar och huserar då i stacken.\n" +
-                            "De kan också finnas i Heapen om de är klassmedlemmar.\n" +
-                            "Reference Types (objekt) finns endast i Heapen. Referenserna (pekarna) till objekten finns i Stacken." +
-                            "\n");
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine("3. Följande metoder ( se bild nedan ) genererar olika svar. " +
-                        "Den första returnerar 3, den andra returnerar 4, varför?");
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("Svar:");
-                        Console.ForegroundColor = ConsoleColor.DarkGreen;
-                        Console.WriteLine("För att x och y är Value Types i första metoden. Det är endast värdet i x som tilldelas y variabeln." +
-                            "\nI den andra medtoden finns det två in­stanser av klassen MyInt som är en Reference Type.\n" +
-                            "MyInt x refererar till y:s objekt genom tilldelningen x = y.\n" +
-                            "När y.MyValue tilldelas 4 så speglas resultatet i x.MyValue som också returnerar 4.\n" +
-                            "Det finns nu två referenser till samma MyInt objekt.");
+                        MainQuestionsAnswers();
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine("Press any key to exit");
                         Console.ReadKey();
@@ -161,6 +127,32 @@ namespace Ovn4
                      * and iterative exercises.
                      */
                     case '0':
+                        Console.Title = "Console Application Closing";
+                        Console.ForegroundColor = ConsoleColor.Magenta;                    
+                        Thread.Sleep(1000);
+                        for (int i = 0; i < 3; i++)
+                        {
+                            Console.Write(". ");
+                            Thread.Sleep(500);
+                        }
+
+                        for (int i = 0; i < 1; i++)
+                        {
+                            Thread.Sleep(500);
+                            Console.Write("\nB ");
+                            Thread.Sleep(500);
+                            Console.Write("Y ");
+                            Thread.Sleep(500);
+                            Console.Write("E ");
+                            Thread.Sleep(500);
+                            Console.Write("!\n");
+                            Thread.Sleep(500);
+                            Console.Clear();
+                            Thread.Sleep(1000);
+                            Console.Write("\n:-)\n\n\n");
+                            Thread.Sleep(1000);
+                        }
+                        Console.ResetColor();
                         Environment.Exit(0);
                         break;
                     default:
@@ -185,7 +177,7 @@ namespace Ovn4
              * As a default case, tell them to use only + or -
              * Below you can see some inspirational code to begin working.
             */
-
+            Console.Title = "1. Examine a List";
             Console.Clear();
             List<string> theList = new List<string>();
             string listItem = string.Empty; //Avoiding null reference
@@ -257,48 +249,7 @@ namespace Ovn4
                         //action = ' ';
                         break;
                     case 'q':
-                        Console.ForegroundColor = ConsoleColor.Cyan;
-                        Console.WriteLine("\nDatastrukturer och minneseffektivitet");
-                        Console.WriteLine(".......................................\n");
-                        Console.WriteLine("Q & A - Questions and answers to Exercise 4");
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine("2. När ökar listans kapacitet? (Alltså den underliggande arrayens storlek).");
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("Svar:");
-                        Console.ForegroundColor = ConsoleColor.DarkGreen;
-                        Console.WriteLine(" När listan blir större än nuvarande kapacitet. Count blir större än Capacity.\n");
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine("3. Med hur mycket ökar kapaciteten?");
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("Svar:");
-                        Console.ForegroundColor = ConsoleColor.DarkGreen;
-                        Console.WriteLine("Den fördubblas -> Capacity * 2.\n");
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine("4. Varför ökar inte listans kapacitet i samma takt som element läggs till?");
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("Svar:");
-                        Console.ForegroundColor = ConsoleColor.DarkGreen;
-                        Console.WriteLine("En lista vet inte hur stor den kommer bli." +
-                            "Den måste ändra arrayen dymnamiskt till Capacity storleken.\n" +
-                            "Det blir en kostam operation då varje element måste kopieras.\n" +
-                            "Därför måste den allokera mer minne än den behöver för att minska storleksändrings operationerna.\n");
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine("5. Minskar kapaciteten när element tas bort ur listan? ");
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("Svar:");
-                        Console.ForegroundColor = ConsoleColor.DarkGreen;
-                        Console.WriteLine("Nej.\n");
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine("6. När är det då fördelaktigt att använda en egendefinierad array istället för en lista?\n");
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("Svar:");
-                        Console.ForegroundColor = ConsoleColor.DarkGreen;
-                        Console.WriteLine("När man behöver lagra homogena element (av samma datatyp).\n" +
-                           "Om man har relativt stora mängder indexerad data. " +
-                           "Den är snabb att söka på men om man vill göra ändrigar:\n" +
-                           "ta bort och lägga till element så ska man välja List (\"dynamisk array\") istället.\n" +
-                           "Arrayen har ett fast antal platser och går inte att ändra på.\n" +
-                           "Listelement har inget index så man får söka efter elementets plats i listan.\n");
+                        ExamineListQuestionsAnswers();
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine("Press any key to exit");
                         Console.ReadKey();
@@ -352,8 +303,6 @@ namespace Ovn4
                     }
                     action = ' ';//Reset.
                 }
-
-
             } while (true);
         }
 
@@ -367,6 +316,7 @@ namespace Ovn4
              * Create a switch with cases to enqueue items or dequeue items
              * Make sure to look at the queue after Enqueueing and Dequeueing to see how it behaves
             */
+            Console.Title = "2. Examine a Queue";
             Console.Clear();
             object? getCurrentElement = " ";
             Queue queue = new Queue();
@@ -570,7 +520,7 @@ namespace Ovn4
              * Create a switch with cases to push or pop items
              * Make sure to look at the stack after pushing and and poping to see how it behaves
             */
-
+            Console.Title = "3. Examine a Stack";
             Console.Clear();
 
             Stack stack = new Stack();
@@ -666,7 +616,6 @@ namespace Ovn4
                         action = ' ';
                         break;
                     case 'i':
-                        
                         //ICA kön - Digital simulering
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.WriteLine("\nICA Supermarket opening - Yippiii!");
@@ -736,18 +685,7 @@ namespace Ovn4
                         Console.Clear();
                         break;
                     case 'q':
-                        Console.Clear();
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine("\nQ & A - Questions and answers to Exercise 4");
-                        Console.WriteLine("1. Simulera ännu en gång ICA - kön på papper.\n" +
-                            "Denna gång med en stack.\n" +
-                        "Varför är det inte så smart att använda en stack i det här fallet?");
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("Svar:");
-                        Console.ForegroundColor = ConsoleColor.DarkGreen;
-                        Console.WriteLine("Därför att en Stack fungerar enligt LIFO (Last In First Out) principen\n" +
-                            "Det innebär att den som kom först till ICA kön får vänta tills sist.\n" +
-                            "och den som kom sist blir placerad först i kön.\n");
+                        ExamineStackQuestionsAnswers();
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine("Press any key to exit");
                         Console.ReadKey();
@@ -788,6 +726,7 @@ namespace Ovn4
              * Example of correct: (()), {}, [({})],  List<int> list = new List<int>() { 1, 2, 3, 4 };
              * Example of incorrect: (()]), [), {[()}],  List<int> list = new List<int>() { 1, 2, 3, 4 );
              */
+            Console.Title = "4. Check Paranthesis";
             Console.Clear();
             char action = ' ';
             Stack stack = new Stack();
@@ -901,6 +840,7 @@ namespace Ovn4
         /// <param name="text">The text to be reversed</param>
         static void ReverseText(string? text)
         {
+            Console.Title = "Examine the ReverseText method";
             string reversedString = "";
             Stack<char> reverseStack = new Stack<char>();
 
@@ -930,6 +870,7 @@ namespace Ovn4
         }
         static int RecursiveOdd(int n)
         {
+            Console.Title = "5. Check RecursionOdd";
             if (n == 1) //The first odd number is one
             {
                 Console.WriteLine(n);
@@ -938,11 +879,12 @@ namespace Ovn4
             }
             Console.WriteLine(n);
             return (RecursiveOdd(n - 1) + 2);
-
         }
 
         static int RecursiveEven(int n)
         {
+            Console.Title = "6. Check RecursionEven";
+
             if (n == 0) //The first even number is zero
             {
                 return 0;
@@ -952,7 +894,7 @@ namespace Ovn4
                 return RecursiveEven(n - 1) + 2;
             }
         }
-     
+
         /// <summary>
         /// Calculates the sum of the Nth term of the Fibonacci sequence<br></br> OR Calculates a Fibonacci sequence<br></br>
         /// Fibonacci sequence: 0 + 1 + 1 + 2 + 3 + 5 + 8,  and so forth.
@@ -960,7 +902,6 @@ namespace Ovn4
         /// <param name="n">Run this method n times OR Set the Nth term of the Fibonacci</param>
         /// <returns></returns>
         static int Fibonacci(int n)
-
         {
             if ((n == 0) || (n == 1))
             {
@@ -970,6 +911,110 @@ namespace Ovn4
             {
                 return (Fibonacci(n - 1) + Fibonacci(n - 2));
             }
+        }
+        static void MainQuestionsAnswers()
+        {
+            Console.Title = "q. Check Q & A";
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("Teori och fakta");
+            Console.WriteLine(".......................................\n");
+            //Q & A: Questions and answers to Exercise 4.
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("1. Hur fungerar stacken och heapen?\n" +
+                "Förklara gärna med exempel eller skiss på dess grundläggande funktion");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Svar:");
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("Minnet delas in i två delar: \"The Stack \" och \"The Heap\".\n" +
+                "Stacken lagrar lokala variabler av Value Types och Reference Types.\n" +
+                "Stacken är en wrapper runt en array som är endimensionell.\n" +
+                "Den är bra på att förvara temporär data enligt LIFO (Last In First Out) principen.\n" +
+                "Stacken sköter sin minneshantering själv och raderar variabel referenserna då koden körts i en metod.\n" +
+                "Heapen lagrar instanser av klasser (kopior av objekt) och klassvariablar då de är tilldelade i klassen.\n" +
+                "Referenstypen har endast fått en referens (en sorts pekare) i stacken innan den instansierats.\n" +
+                "Referenstyper får en minnesplats på Heapen efter de har skapats via new operatorn.\n" +
+                "Heapen sköter inte sin minneshantering själv utan den sköts av CLR (Common Language Runtime) GC (Garbage Collector).\n");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("2.Vad är Value Types repsektive Reference Types och vad skiljer dem åt ?");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Svar:");
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("Value Types kan vara lokala variablar och huserar då i stacken.\n" +
+                "De kan också finnas i Heapen om de är klassmedlemmar.\n" +
+                "Reference Types (objekt) finns endast i Heapen. Referenserna (pekarna) till objekten finns i Stacken." +
+                "\n");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("3. Följande metoder ( se bild nedan ) genererar olika svar. " +
+            "Den första returnerar 3, den andra returnerar 4, varför?");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Svar:");
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("För att x och y är Value Types i första metoden. Det är endast värdet i x som tilldelas y variabeln." +
+                "\nI den andra medtoden finns det två in­stanser av klassen MyInt som är en Reference Type.\n" +
+                "MyInt x refererar till y:s objekt genom tilldelningen x = y.\n" +
+                "När y.MyValue tilldelas 4 så speglas resultatet i x.MyValue som också returnerar 4.\n" +
+                "Det finns nu två referenser till samma MyInt objekt.");
+        }
+        static void ExamineListQuestionsAnswers()
+        {
+            Console.Title = "q. Check Q & A";
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("\nDatastrukturer och minneseffektivitet");
+            Console.WriteLine(".......................................\n");
+            Console.WriteLine("Q & A - Questions and answers to Exercise 4");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("2. När ökar listans kapacitet? (Alltså den underliggande arrayens storlek).");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Svar:");
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine(" När listan blir större än nuvarande kapacitet. Count blir större än Capacity.\n");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("3. Med hur mycket ökar kapaciteten?");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Svar:");
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("Den fördubblas -> Capacity * 2.\n");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("4. Varför ökar inte listans kapacitet i samma takt som element läggs till?");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Svar:");
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("En lista vet inte hur stor den kommer bli." +
+                "Den måste ändra arrayen dymnamiskt till Capacity storleken.\n" +
+                "Det blir en kostam operation då varje element måste kopieras.\n" +
+                "Därför måste den allokera mer minne än den behöver för att minska storleksändrings operationerna.\n");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("5. Minskar kapaciteten när element tas bort ur listan? ");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Svar:");
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("Nej.\n");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("6. När är det då fördelaktigt att använda en egendefinierad array istället för en lista?\n");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Svar:");
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("När man behöver lagra homogena element (av samma datatyp).\n" +
+               "Om man har relativt stora mängder indexerad data. " +
+               "Den är snabb att söka på men om man vill göra ändrigar:\n" +
+               "ta bort och lägga till element så ska man välja List (\"dynamisk array\") istället.\n" +
+               "Arrayen har ett fast antal platser och går inte att ändra på.\n" +
+               "Listelement har inget index så man får söka efter elementets plats i listan.\n");
+        }
+        static void ExamineStackQuestionsAnswers()
+        {
+            Console.Title = "q. Check Q & A";
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("\nQ & A - Questions and answers to Exercise 4");
+            Console.WriteLine("1. Simulera ännu en gång ICA - kön på papper.\n" +
+                "Denna gång med en stack.\n" +
+            "Varför är det inte så smart att använda en stack i det här fallet?");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Svar:");
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("Därför att en Stack fungerar enligt LIFO (Last In First Out) principen\n" +
+                "Det innebär att den som kom först till ICA kön får vänta tills sist.\n" +
+                "och den som kom sist blir placerad först i kön.\n");
         }
     }
 }
