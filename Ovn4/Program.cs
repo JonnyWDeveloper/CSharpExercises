@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Xml.Linq;
-using static System.Collections.Specialized.BitVector32;
+﻿using System.Collections;
+using System.Diagnostics.Metrics;
 
 namespace Ovn4
 {
@@ -28,15 +26,19 @@ namespace Ovn4
                 Console.WriteLine("The Main Menu");
                 Console.WriteLine("\n..............................................................................");
                 Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine("\nPlease navigate through the menu by inputting the number \n(1, 2, 3 , 4, 0) of your choice");
+                Console.WriteLine("\nPlease navigate through the menu by inputting the number \n(1, 2, 3 , 4, 5, 6, 7, 8, 0) of your choice");
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("\n1. Examine a List"
                     + "\n2. Examine a Queue"
                     + "\n3. Examine a Stack"
                     + "\n4. Check Paranthesis"
+                    + "\n5. Check RecursionOdd"
+                    + "\n6. Check RecursionEven"
+                    + "\n7. Check Fibonacci Sequence"
+                    + "\n8. Check Fibonacci Sum Nth"
                     + "\nq. Check Q & A"
                     + "\n0. Exit the application");
-
+                
                 char input = ' '; //Creates the character input to be used with the switch-case below.
 
                 try
@@ -64,8 +66,52 @@ namespace Ovn4
                     case '4':
                         CheckParanthesis();
                         break;
-                    case 'q':
+                    case '5':
+                        RecursiveOdd(1); //  1
+                        RecursiveOdd(3); // 5
+                        int resultOdd = RecursiveOdd(5); // 9
+                        Console.WriteLine("Result: " + resultOdd);
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("Press any key to exit");
+                        Console.ReadKey();
                         Console.Clear();
+                        break;
+                    case '6':
+                        int resultEven = RecursiveEven(100);
+                        Console.WriteLine("Result: " + resultEven);
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("Press any key to exit");
+                        Console.ReadKey();
+                        Console.Clear();
+                        break;
+                    case '7':
+                        Console.ForegroundColor= ConsoleColor.White;
+                        Console.WriteLine("Set how many steps we will go in the sequence.");
+                        Console.WriteLine("The result shows the sum for each step");
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        int runs = Convert.ToInt32( Console.ReadLine());
+                        for (int i = 0; i <= runs; i++) 
+                        {
+                            Console.WriteLine("Result: " + Fibonacci(i));
+                        }
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("Press any key to exit");
+                        Console.ReadKey();
+                        Console.Clear();
+                        break;
+                    case '8':
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine("Set the Nth term for the sequence.");
+                        Console.WriteLine("The result shows the sum for the Nth term");
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        int Nth = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("Result: " + Fibonacci(Nth));
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("Press any key to exit");
+                        Console.ReadKey();
+                        Console.Clear();
+                        break;
+                    case 'q':
                         Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.WriteLine("Teori och fakta");
                         Console.WriteLine(".......................................\n");
@@ -105,7 +151,9 @@ namespace Ovn4
                             "MyInt x refererar till y:s objekt genom tilldelningen x = y.\n" +
                             "När y.MyValue tilldelas 4 så speglas resultatet i x.MyValue som också returnerar 4.\n" +
                             "Det finns nu två referenser till samma MyInt objekt.");
-                        Console.ReadLine();
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("Press any key to exit");
+                        Console.ReadKey();
                         Console.Clear();
                         break;
                     /*
@@ -174,7 +222,7 @@ namespace Ovn4
                     && input[0].ToString() != "q"
                     && input[0].ToString() != "t"//t calls TrimExcess on the list.
                     && input[0].ToString() == "+"
-                    || input[0].ToString() == "-")
+                    || input![0].ToString() == "-")
                 {
                     listItem = input.Substring(1);  //Get the rest of the characters to add to the list
                                                     //starting from the 2nd character in the string.
@@ -251,6 +299,10 @@ namespace Ovn4
                            "ta bort och lägga till element så ska man välja List (\"dynamisk array\") istället.\n" +
                            "Arrayen har ett fast antal platser och går inte att ändra på.\n" +
                            "Listelement har inget index så man får söka efter elementets plats i listan.\n");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("Press any key to exit");
+                        Console.ReadKey();
+                        Console.Clear();
                         break;
                     case 't':
                         Console.ForegroundColor = ConsoleColor.Yellow;
@@ -363,7 +415,7 @@ namespace Ovn4
                 else if (!string.IsNullOrEmpty(input)
                     && input.Length == 1
                     && input[0].ToString() == "0"                       //To exit the menu, ONLY 0 is allowed.
-                    || input.Length == 1 && input[0].ToString() == "i"  //ICA
+                    || input!.Length == 1 && input[0].ToString() == "i"  //ICA
                     || input.Length == 1 && input[0].ToString() == "t"  //TrimToSize
                     || input.Length == 1 && input[0].ToString() == "-")
                 {
@@ -478,6 +530,10 @@ namespace Ovn4
                         //ICA Queue simulation ends
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.WriteLine("ICA Supermarket closes - Nooooo!\n");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("Press any key to exit");
+                        Console.ReadKey();
+                        Console.Clear();
                         break;
                     case 't': //TrimToSize
                         Console.ForegroundColor = ConsoleColor.Gray;
@@ -518,7 +574,7 @@ namespace Ovn4
             Console.Clear();
 
             Stack stack = new Stack();
-            Object getCurrentElement = string.Empty;
+            object getCurrentElement = string.Empty;
 
             do
             {
@@ -560,7 +616,7 @@ namespace Ovn4
                 else if (!string.IsNullOrEmpty(input)
                     && input.Length == 1
                     && input[0].ToString() == "0"                       //To exit the menu, ONLY 0 is allowed.
-                    || input.Length == 1 && input[0].ToString() == "i"  //ICA
+                    || input!.Length == 1 && input[0].ToString() == "i"  //ICA
                     || input.Length == 1 && input[0].ToString() == "r"  //ReverseText
                     || input.Length == 1 && input[0].ToString() == "-"
                     || input.Length == 1 && input[0].ToString() == "q")
@@ -610,7 +666,7 @@ namespace Ovn4
                         action = ' ';
                         break;
                     case 'i':
-                        Console.Clear();
+                        
                         //ICA kön - Digital simulering
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.WriteLine("\nICA Supermarket opening - Yippiii!");
@@ -674,7 +730,9 @@ namespace Ovn4
                         //ICA Queue simulation ends
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.WriteLine("ICA Supermarket closes - Nooooo!\n");
-                        Console.ReadLine();
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("Press any key to exit");
+                        Console.ReadKey();
                         Console.Clear();
                         break;
                     case 'q':
@@ -690,21 +748,22 @@ namespace Ovn4
                         Console.WriteLine("Därför att en Stack fungerar enligt LIFO (Last In First Out) principen\n" +
                             "Det innebär att den som kom först till ICA kön får vänta tills sist.\n" +
                             "och den som kom sist blir placerad först i kön.\n");
-                        Console.ReadLine();
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("Press any key to exit");
+                        Console.ReadKey();
                         Console.Clear();
                         break;
                     case 'r':
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine("\n\nReverseText(string text);");
-                        Console.WriteLine("Enter a text to be reversed!");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("\n\nReverseText(string text)");
+                        Console.WriteLine("Enter a text to be reversed\n");
+                        Console.ForegroundColor = ConsoleColor.Yellow;
                         string inputToReverse = Console.ReadLine();
-
                         if (!String.IsNullOrEmpty(inputToReverse))
                         {
                             ReverseText(inputToReverse);
                         }
                         Console.ReadLine();
-
                         break;
                     default:
                         Console.ForegroundColor = ConsoleColor.Red;
@@ -758,7 +817,7 @@ namespace Ovn4
                 if (!string.IsNullOrEmpty(input)
                  && input.Length == 1
                  && input[0].ToString() == "0"                       //To exit the menu, ONLY 0 is allowed.
-                || input.Length == 1 && input[0].ToString() == "p")
+                || input!.Length == 1 && input[0].ToString() == "p")
                 {
                     action = input[0];
                 }
@@ -783,12 +842,8 @@ namespace Ovn4
                         Console.Write("Input: ");
                         input = Console.ReadLine();
 
-                        foreach (var character in input)
+                        foreach (var character in input!)
                         {
-                            //for (int i = 0; i < input.Length; i++)
-                            //{
-                            //Char character = input[i];
-
                             if (character == '(')
                             {
                                 ++noOfLeft;
@@ -838,22 +893,22 @@ namespace Ovn4
                 }
             } while (true);
         }
-
-
         /// <summary>
         /// A method that gets a text as a parameter 
         /// then uses a Stack to revers the order of the characters. 
         /// The reversed text is written to the console window.
         /// </summary>
         /// <param name="text">The text to be reversed</param>
-        static void ReverseText(string text)
+        static void ReverseText(string? text)
         {
             string reversedString = "";
-            Stack reverseStack = new Stack();
+            Stack<char> reverseStack = new Stack<char>();
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
 
             while (true)
             {
-                foreach (char c in text)
+                foreach (char c in text!)
                 {
                     reverseStack.Push(c); //Adds characters. Does not change the text               
                 }
@@ -863,11 +918,60 @@ namespace Ovn4
                     Console.Write(reversedString[reversedString.Length - 1] + " "); //according to LIFO so the last character will now be first.
                     Thread.Sleep(200);
                 }
-                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("\nPress 0 to exit\n");
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 text = Console.ReadLine();
+                if (text == "0")
+                {
+                    ExamineStack();
+                }
             }
         }
+        static int RecursiveOdd(int n)
+        {
+            if (n == 1) //The first odd number is one
+            {
+                Console.WriteLine(n);
+                return 1;
 
+            }
+            Console.WriteLine(n);
+            return (RecursiveOdd(n - 1) + 2);
+
+        }
+
+        static int RecursiveEven(int n)
+        {
+            if (n == 0) //The first even number is zero
+            {
+                return 0;
+            }
+            else
+            {
+                return RecursiveEven(n - 1) + 2;
+            }
+        }
+     
+        /// <summary>
+        /// Calculates the sum of the Nth term of the Fibonacci sequence<br></br> OR Calculates a Fibonacci sequence<br></br>
+        /// Fibonacci sequence: 0 + 1 + 1 + 2 + 3 + 5 + 8,  and so forth.
+        /// </summary>
+        /// <param name="n">Run this method n times OR Set the Nth term of the Fibonacci</param>
+        /// <returns></returns>
+        static int Fibonacci(int n)
+
+        {
+            if ((n == 0) || (n == 1))
+            {
+                return n;
+            }
+            else
+            {
+                return (Fibonacci(n - 1) + Fibonacci(n - 2));
+            }
+        }
     }
 }
+
 

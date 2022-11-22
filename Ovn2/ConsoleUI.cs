@@ -101,7 +101,7 @@ namespace Ovn2
             Print("0 Avsluta\n");
             Print("Ditt val: ");
 
-            switch (GetUserInput().Trim())
+            switch (GetUserInput()!.Trim())
             {
                 case "0":
                     Environment.Exit(0);

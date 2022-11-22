@@ -8,7 +8,7 @@ namespace Restaurang
 {
     internal class EmployeeRegister
     {
-        private Employee employee;
+        private Employee? employee;
         private List<Employee> employees = new List<Employee>();
         public List<Employee> Employees
         {

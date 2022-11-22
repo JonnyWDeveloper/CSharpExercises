@@ -15,8 +15,6 @@ namespace Restaurang
                 employeeRegister.AddEmployee();
             }
             while (true);
-            Environment.Exit(0);    
-            //employeeRegister.PrintEmployees();
         }
     }
 }
