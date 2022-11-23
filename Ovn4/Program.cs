@@ -97,6 +97,7 @@ namespace Ovn4
                         {
                             Console.WriteLine("Result: " + Fibonacci(i));
                         }
+                        Console.WriteLine($"Number of method calls: {counter}");
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine("Press any key to exit");
                         Console.ReadKey();
@@ -109,6 +110,7 @@ namespace Ovn4
                         Console.WriteLine("The result shows the sum for the Nth term");
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         int Nth = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine($"Number of method calls: {counter}");
                         Console.WriteLine("Result: " + Fibonacci(Nth));
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine("Press any key to exit");
@@ -128,7 +130,7 @@ namespace Ovn4
                      */
                     case '0':
                         Console.Title = "Console Application Closing";
-                        Console.ForegroundColor = ConsoleColor.Magenta;                    
+                        Console.ForegroundColor = ConsoleColor.Magenta;
                         Thread.Sleep(1000);
                         for (int i = 0; i < 3; i++)
                         {
@@ -208,7 +210,15 @@ namespace Ovn4
                 string? input = Console.ReadLine(); //Get user input
                 Console.WriteLine();
                 Console.Clear();
-                if (!string.IsNullOrEmpty(input)    //Input must be atleast 2 chars.
+                if (!string.IsNullOrEmpty(input)
+                  && input.Length == 1
+                  && input[0].ToString() == "0"                       //To exit the menu, ONLY 0 is allowed.
+                  || input.Length == 1 && input[0].ToString() == "q"  //ICA
+                  || input.Length == 1 && input[0].ToString() == "t") //TrimToSize                   
+                {
+                    action = input[0];
+                }
+                else if (!string.IsNullOrEmpty(input)    //Input must be atleast 2 chars.
                     && input.Length > 1             //It is not allowed to exit the menu with 0. 
                     && input[0].ToString() != "0"   //and any other character following including more zeros.
                     && input[0].ToString() != "q"
@@ -219,14 +229,6 @@ namespace Ovn4
                     listItem = input.Substring(1);  //Get the rest of the characters to add to the list
                                                     //starting from the 2nd character in the string.
                     action = input[0];              // + Add or - Remove symbol.
-                }
-                else if (!string.IsNullOrEmpty(input)
-                    && input.Length == 1
-                    && input[0].ToString() == "0"                       //To exit the menu, ONLY 0 is allowed.
-                    || input.Length == 1 && input[0].ToString() == "q"  //ICA
-                    || input.Length == 1 && input[0].ToString() == "t") //TrimToSize                   
-                {
-                    action = input[0];
                 }
                 else
                 {
@@ -894,27 +896,31 @@ namespace Ovn4
                 return RecursiveEven(n - 1) + 2;
             }
         }
-
+        static int counter = 0;
         /// <summary>
         /// Calculates the sum of the Nth term of the Fibonacci sequence<br></br> OR Calculates a Fibonacci sequence<br></br>
         /// Fibonacci sequence: 0 + 1 + 1 + 2 + 3 + 5 + 8,  and so forth.
         /// </summary>
-        /// <param name="n">Run this method n times OR Set the Nth term of the Fibonacci</param>
-        /// <returns></returns>
+        /// <param name="n">Set how many steps we will go in the sequence and show the  sum of each step <br></br> OR Find the Nth term of the Fibonacci sequence and its value</param>
+        /// <returns></returns>        
         static int Fibonacci(int n)
         {
             if ((n == 0) || (n == 1))
             {
+                counter++;
+                //Console.WriteLine(counter++);
                 return n;
             }
             else
             {
+                counter++;
+                //Console.WriteLine(counter++);
                 return (Fibonacci(n - 1) + Fibonacci(n - 2));
             }
         }
         static void MainQuestionsAnswers()
         {
-            Console.Title = "q. Check Q & A";
+            Console.Title = "Check Q & A - Main";
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("Teori och fakta");
             Console.WriteLine(".......................................\n");
@@ -957,7 +963,7 @@ namespace Ovn4
         }
         static void ExamineListQuestionsAnswers()
         {
-            Console.Title = "q. Check Q & A";
+            Console.Title = "Check Q & A - Examine List";
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("\nDatastrukturer och minneseffektivitet");
             Console.WriteLine(".......................................\n");
@@ -1003,7 +1009,7 @@ namespace Ovn4
         }
         static void ExamineStackQuestionsAnswers()
         {
-            Console.Title = "q. Check Q & A";
+            Console.Title = "Check Q & A - Examine Queue";
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("\nQ & A - Questions and answers to Exercise 4");
             Console.WriteLine("1. Simulera ännu en gång ICA - kön på papper.\n" +
