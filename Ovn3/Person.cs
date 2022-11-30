@@ -18,8 +18,8 @@ namespace Ovn3
     internal class Person : IPerson
     {
         private int age;
-        private string fName;
-        private string lName;
+        private string ?fName;
+        private string ?lName;
         private double height;
         private double weight;
         public Person(string firstname, string lastname)
@@ -56,7 +56,7 @@ namespace Ovn3
         {
             get
             {
-                return fName;
+                return fName!;
             }
             set
             {
@@ -76,7 +76,7 @@ namespace Ovn3
         {
             get
             {
-                return lName;
+                return lName!;
             }
             set
             {

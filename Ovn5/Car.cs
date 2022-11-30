@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Ovn5
+﻿namespace Ovn5
 {
     /// <summary>
     /// The Car class inheriting from its abstract base class Vehicle
@@ -12,16 +6,27 @@ namespace Ovn5
     internal class Car : Vehicle
     {
         private Fuel fuel;
-        public Car(string registrationNumber, ConsoleColor color, int numberOfWheels, Fuel fuel) : base(registrationNumber, color, numberOfWheels)
+        private string brand;
+        public Car(Type type, string brand, string registrationNumber, ConsoleColor color, int numberOfWheels, Fuel fuel) : base(type, registrationNumber, color, numberOfWheels)
         {
+            this.brand = brand;
             this.fuel = fuel;
+        }
+        public Fuel Fuel
+        {
+            get => fuel;
+            set => fuel = value;
+        }
+        public string Brand
+        {
+            get => brand;
+            set => brand = value;
         }
     }
     /// <summary>
     /// The diverse group of available car fuels
     /// </summary>
     public enum Fuel
-
     {
         Biogas,
         Diesel,

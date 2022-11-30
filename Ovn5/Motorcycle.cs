@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Ovn5
+﻿namespace Ovn5
 {
     /// <summary>
     /// The Motorcycle class inheriting from its abstract base class Vehicle
@@ -12,7 +6,7 @@ namespace Ovn5
     internal class Motorcycle : Vehicle
     {
         private int cylinderVolume;
-        public Motorcycle(string registrationNumber, ConsoleColor color, int numberOfWheels, int cylinderVolume) : base(registrationNumber, color, numberOfWheels)
+        public Motorcycle(Type type, string registrationNumber, ConsoleColor color, int numberOfWheels, int cylinderVolume) : base(type, registrationNumber, color, numberOfWheels)
         {
             this.cylinderVolume = cylinderVolume;
         }

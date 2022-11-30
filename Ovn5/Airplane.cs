@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Ovn5
+﻿namespace Ovn5
 {
     /// <summary>
     /// The Airplane class inheriting from its abstract base class Vehicle
@@ -13,7 +7,7 @@ namespace Ovn5
     {
         private int numberOfEngines;
 
-        public Airplane(string registrationNumber, ConsoleColor color, int numberOfWheels, int numberOfEngines) : base(registrationNumber, color, numberOfWheels)
+        public Airplane(Type type, string registrationNumber, ConsoleColor color, int numberOfWheels, int numberOfEngines) : base(type, registrationNumber, color, numberOfWheels)
         {
             this.numberOfEngines = numberOfEngines;
         }
@@ -21,6 +15,6 @@ namespace Ovn5
         {
             get => numberOfEngines;
             set => numberOfEngines = value;
-        }       
+        }
     }
 }

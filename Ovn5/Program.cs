@@ -1,18 +1,17 @@
-﻿using System.Collections;
-
-namespace Ovn5
+﻿namespace Ovn5
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-
-            //Pratar endast med Manager klassen 
+            //Program Pratar endast med Manager klassen 
             //Manager ---> IUI <--> UI
             //Manager ---> IHandler <--> Handler --> IGarage <--> Garage
-
-
-            Console.ReadKey();
+            while (true)
+            {
+                Manager<IVehicle> manager = new Manager<IVehicle>();
+                manager.Start();
+            }
         }
     }
 }
